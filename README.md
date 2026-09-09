@@ -1,1 +1,95 @@
 # test006
+
+> [Epic] SCRUM-75 UC5 — Hotel performance reporting and KPIs
+    Business need Hotel operations, commercial and finance teams need reliable reporting from hotel data that is already available. Records arrive with duplicates, missing values, inconsistent dates and different spellings for booking statuses, room types and countries. Hotel data is already available in Snowflake at HOTEL.BRONZE_HOTEL. Use this existing data and confirm its structure and quality during source discovery. What we need Deliver the same 12 hotel KPIs: Total Bookings, Total Revenue, Occupancy %, ADR, RevPAR, Cancellation %, Average Stay, Repeat Guest %, No Show %, Revenue by Channel, Rooms Unsold and Average Review Score. Make them available in the UI on a Hotel KPIs dashboard. Progress the existing Raw data through Cleansed, Business, Reporting and KPI layers. Source Analysis must discover data-quality issues and propose cleansing from actual data. Keep the agreed business transformations and reporting requirements. The attached Client_BA_Requirement_Workbook.xlsx is the original raw business intake supplied by the client. It contains five initial KPI definitions and is not the complete 12-KPI delivery specification. Reconcile incomplete or conflicting entries with the full scope and original agreed definitions during business review; do not silently reduce scope or substitute formulas. Total Bookings excludes cancelled bookings. Total Revenue includes all folio charges, including room and ancillary revenue. Revenue by Channel uses booking value for confirmed and checked-out bookings. These are distinct measures and must retain their original definitions. Occupancy %, ADR and RevPAR use the same hotel-day performance records for rooms sold, rooms available and room revenue. Retain the specified calculation, population and grouping for every KPI. Information to confirm Validate the source structure and resolve missing or ambiguous details with the business owner. Do not silently add exclusions, change formulas, invent defaults or drop rules. Confirm guest identity and prior-stay evidence where needed without changing the Repeat Guest % definition. Demonstrate that every workbook rule and all 12 KPIs are represented, reconciled and tested. Protect the already-landed Raw data. Publish only after the required quality checks pass.
+[Story] SCRUM-76 Capture: import the Mapping Sheet from this ticket
+    Pull the attached .xlsx on the Capture phase; confirm rules (cleansing + transformation) and the 8 KPI definitions are read with zero unresolved rows.
+[Story] SCRUM-77 Detect shape: already-landed source, five named layers
+    The requirement must be detected as build_layers WITHOUT ingest_source (data is already in Snowflake) and the layer chain raw → cleansed → business → reporting → kpi must be read from its own words.
+[Story] SCRUM-78 Cleansed layer: dedupe, nulls, formats, value standardisation
+    One cleansed model per BRONZE_HOTEL table applying the sheet's rules: dedupe (2,920 duplicate confirmation numbers), null handling, 15 status spellings to 4, 31 room-type spellings to 8 canonical codes, 27 country spellings to ISO-3166, and four date formats to one.
+[Story] SCRUM-79 Business layer: units, defaults, derived flags
+    Build the Business layer on top of Cleansed: apply the sheet's business rules, fill declared defaults, and add the derived columns the KPIs depend on. Business rules Derived flags —  is_cancelled ,  is_realised ,  is_no_show ,  room_nights_booked ,  rooms_unsold ,  guest_age_years . Declared defaults — channel and loyalty tier, where the source leaves them empty. Every rule comes from the Mapping Sheet; nothing is invented in code. Acceptance Each rule on the Transformation tab is expressed in the generated model, or reported as unexpressed — never dropped silently. Derived columns exist in the Business layer and are used by the KPI models.
+[Story] SCRUM-80 Reporting layer: star schema with outriggers
+    fact_reservations, fact_daily_hotel_performance, fact_folio_charges, fact_stay_nights, fact_payments, fact_reviews + dims (dim_hotels, dim_guests, dim_room_types, dim_channels, dim_rate_plans, dim_loyalty_members) with surrogate keys, Unknown members and relationship tests.
+[Story] SCRUM-81 KPI layer: one model per declared KPI
+    Twelve KPI models: the 8 required hotel KPIs plus No Show %, Revenue by Channel, Rooms Unsold and Average Review Score. Occupancy/ADR/RevPAR read fact_daily_hotel_performance so each is a single-fact calculation.
+[Story] SCRUM-82 Testing: dynamic KPI tests + gate
+    Generated tests prove every KPI model is catalogued, ratio KPIs guard division by zero, KPI models read only fact_/dim_ models, dbt refs resolve, no destructive SQL. Commit blocked until green.
+[Story] SCRUM-83 BI: answer the KPI questions in the UI
+    BI answers Occupancy %, ADR, RevPAR, Total Revenue, Cancellation % etc. over the delivered KPI tables, pinned to a 'Hotel KPIs' dashboard.
+
+**Generated by [GenCrew](https://github.com) AI Engineering Team**
+
+- Requirement ID: `REQ-3A2430CA`
+- Tech Stack: Not specified
+- Generated: 2026-09-09 03:09 UTC
+
+## Files
+
+- `declare_raw_layer_sources.py`
+- `reporting_dimension_for_guests.py`
+- `business_model_for_batch_load_audit.py`
+- `reporting_dimension_for_hotels.py`
+- `business_model_for_cancellations.py`
+- `business_model_for_channels.py`
+- `reporting_dimension_for_rooms.py`
+- `reporting_dimension_for_reservations.py`
+- `business_model_for_daily_hotel_performan.py`
+- `business_model_for_folio_charges.py`
+- `business_model_for_guests.py`
+- `business_model_for_hotels.py`
+- `business_model_for_housekeeping_tasks.py`
+- `business_model_for_loyalty_members.py`
+- `business_model_for_market_segments.py`
+- `business_model_for_ota_feed_raw.py`
+- `business_model_for_payments.py`
+- `business_model_for_pms_extract_log.py`
+- `business_model_for_rate_plans.py`
+- `business_model_for_reservations.py`
+- `business_model_for_reservation_rooms.py`
+- `business_model_for_reviews.py`
+- `business_model_for_rooms.py`
+- `business_model_for_room_inventory_daily.py`
+- `business_model_for_room_types.py`
+- `business_model_for_stay_nights.py`
+- `versioned_history_for_batch_load_audit.py`
+- `versioned_history_for_cancellations.py`
+- `versioned_history_for_channels.py`
+- `versioned_history_for_daily_hotel_perfor.py`
+- `versioned_history_for_folio_charges.py`
+- `versioned_history_for_guests.py`
+- `versioned_history_for_hotels.py`
+- `versioned_history_for_housekeeping_tasks.py`
+- `versioned_history_for_loyalty_members.py`
+- `versioned_history_for_market_segments.py`
+- `versioned_history_for_ota_feed_raw.py`
+- `versioned_history_for_payments.py`
+- `versioned_history_for_pms_extract_log.py`
+- `versioned_history_for_rate_plans.py`
+- `versioned_history_for_reservations.py`
+- `versioned_history_for_reservation_rooms.py`
+- `versioned_history_for_reviews.py`
+- `versioned_history_for_rooms.py`
+- `versioned_history_for_room_inventory_dai.py`
+- `versioned_history_for_room_types.py`
+- `versioned_history_for_stay_nights.py`
+- `reporting_fact_for_daily_hotel_performan.py`
+- `kpi_model_for_average_daily_rate.py`
+- `kpi_model_for_revenue_per_available_room.py`
+- `kpi_model_for_occupancy_rate.py`
+- `kpi_model_for_average_length_of_stay.py`
+- `kpi_model_for_revenue_per_available_room.py`
+- `kpi_model_for_gross_operating_profit.py`
+- `kpi_model_for_net_operating_income.py`
+- `kpi_model_for_ebitda.py`
+- `kpi_model_for_return_on_investment.py`
+- `kpi_model_for_customer_satisfaction_scor.py`
+- `kpi_model_for_employee_satisfaction_scor.py`
+- `orchestration_job.py`
+- `documentation.py`
+- `data_modelling_silver_review_and_reporti.py`
+
+## Getting Started
+
+Review each file and adapt to your environment as needed.
