@@ -23,72 +23,50 @@
 
 - Requirement ID: `REQ-3A2430CA`
 - Tech Stack: Not specified
-- Generated: 2026-09-09 03:09 UTC
+- Generated: 2026-09-09 03:23 UTC
 
 ## Files
 
-- `declare_raw_layer_sources.py`
-- `reporting_dimension_for_guests.py`
-- `business_model_for_batch_load_audit.py`
-- `reporting_dimension_for_hotels.py`
-- `business_model_for_cancellations.py`
-- `business_model_for_channels.py`
-- `reporting_dimension_for_rooms.py`
-- `reporting_dimension_for_reservations.py`
-- `business_model_for_daily_hotel_performan.py`
-- `business_model_for_folio_charges.py`
-- `business_model_for_guests.py`
-- `business_model_for_hotels.py`
-- `business_model_for_housekeeping_tasks.py`
-- `business_model_for_loyalty_members.py`
-- `business_model_for_market_segments.py`
-- `business_model_for_ota_feed_raw.py`
-- `business_model_for_payments.py`
-- `business_model_for_pms_extract_log.py`
-- `business_model_for_rate_plans.py`
-- `business_model_for_reservations.py`
-- `business_model_for_reservation_rooms.py`
-- `business_model_for_reviews.py`
-- `business_model_for_rooms.py`
-- `business_model_for_room_inventory_daily.py`
-- `business_model_for_room_types.py`
-- `business_model_for_stay_nights.py`
-- `versioned_history_for_batch_load_audit.py`
-- `versioned_history_for_cancellations.py`
-- `versioned_history_for_channels.py`
-- `versioned_history_for_daily_hotel_perfor.py`
-- `versioned_history_for_folio_charges.py`
-- `versioned_history_for_guests.py`
-- `versioned_history_for_hotels.py`
-- `versioned_history_for_housekeeping_tasks.py`
-- `versioned_history_for_loyalty_members.py`
-- `versioned_history_for_market_segments.py`
-- `versioned_history_for_ota_feed_raw.py`
-- `versioned_history_for_payments.py`
-- `versioned_history_for_pms_extract_log.py`
-- `versioned_history_for_rate_plans.py`
-- `versioned_history_for_reservations.py`
-- `versioned_history_for_reservation_rooms.py`
-- `versioned_history_for_reviews.py`
-- `versioned_history_for_rooms.py`
-- `versioned_history_for_room_inventory_dai.py`
-- `versioned_history_for_room_types.py`
-- `versioned_history_for_stay_nights.py`
-- `reporting_fact_for_daily_hotel_performan.py`
-- `kpi_model_for_average_daily_rate.py`
-- `kpi_model_for_revenue_per_available_room.py`
-- `kpi_model_for_occupancy_rate.py`
-- `kpi_model_for_average_length_of_stay.py`
-- `kpi_model_for_revenue_per_available_room.py`
-- `kpi_model_for_gross_operating_profit.py`
-- `kpi_model_for_net_operating_income.py`
-- `kpi_model_for_ebitda.py`
-- `kpi_model_for_return_on_investment.py`
-- `kpi_model_for_customer_satisfaction_scor.py`
-- `kpi_model_for_employee_satisfaction_scor.py`
-- `orchestration_job.py`
-- `documentation.py`
-- `data_modelling_silver_review_and_reporti.py`
+- `APPROVED_DATA_MODEL.json`
+- `ONTOLOGY_PROVENANCE.json`
+- `PROJECT_GUIDE.md`
+- `business-ontology.yaml`
+- `gencrew-transformation-dbt/.env.example`
+- `gencrew-transformation-dbt/BUSINESS_RULES.md`
+- `gencrew-transformation-dbt/INCREMENTAL.md`
+- `gencrew-transformation-dbt/KPI_CATALOG.md`
+- `gencrew-transformation-dbt/README.md`
+- `gencrew-transformation-dbt/dbt_project.yml`
+- `gencrew-transformation-dbt/models/business/business_batch_load_audit.sql`
+- `gencrew-transformation-dbt/models/business/business_cancellations.sql`
+- `gencrew-transformation-dbt/models/business/business_channels.sql`
+- `gencrew-transformation-dbt/models/business/business_daily_hotel_performance.sql`
+- `gencrew-transformation-dbt/models/business/business_folio_charges.sql`
+- `gencrew-transformation-dbt/models/business/business_guests.sql`
+- `gencrew-transformation-dbt/models/business/business_hotels.sql`
+- `gencrew-transformation-dbt/models/business/business_housekeeping_tasks.sql`
+- `gencrew-transformation-dbt/models/business/business_loyalty_members.sql`
+- `gencrew-transformation-dbt/models/business/business_market_segments.sql`
+- `gencrew-transformation-dbt/models/business/business_ota_feed_raw.sql`
+- `gencrew-transformation-dbt/models/business/business_payments.sql`
+- `gencrew-transformation-dbt/models/business/business_pms_extract_log.sql`
+- `gencrew-transformation-dbt/models/business/business_rate_plans.sql`
+- `gencrew-transformation-dbt/models/business/business_reservation_rooms.sql`
+- `gencrew-transformation-dbt/models/business/business_reservations.sql`
+- `gencrew-transformation-dbt/models/business/business_reviews.sql`
+- `gencrew-transformation-dbt/models/business/business_room_inventory_daily.sql`
+- `gencrew-transformation-dbt/models/business/business_room_types.sql`
+- `gencrew-transformation-dbt/models/business/business_rooms.sql`
+- `gencrew-transformation-dbt/models/business/business_stay_nights.sql`
+- `gencrew-transformation-dbt/models/business/models.yml`
+- `gencrew-transformation-dbt/models/business/schema.yml`
+- `gencrew-transformation-dbt/models/kpi/kpi_adr.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_average_review_score.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_average_stay.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_cancellation_pct.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_no_show_pct.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_occupancy_pct.sql`
+- `gencrew-transformation-dbt/models/kpi/kpi_repeat_guest_pct.sql`
 
 ## Getting Started
 
